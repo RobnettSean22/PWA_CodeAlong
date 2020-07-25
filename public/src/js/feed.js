@@ -9,9 +9,14 @@ function openCreatePostModal() {
   if (deferredPrompt) {
     deferredPrompt.propmt();
     deferredPrompt.userChoice.then(function(choiceResult) {
-      console.log(choiceResult.outcome)
-      if(choiceResults.outCome)
+      console.log(choiceResult.outcome);
+      if (choiceResults.outCome === "dismissed") {
+        console.log("user cancelled instalation");
+      } else {
+        console.log("user added to home screen");
+      }
     });
+    deferredPrompt = null;
   }
 }
 

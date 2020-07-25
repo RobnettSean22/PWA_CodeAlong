@@ -12,3 +12,34 @@ window.addEventListener("beforeinstallprompt", function(event) {
   deferredPrompt = event;
   return false;
 });
+
+fetch("https://httpbin.org/ip")
+  .then(function(response) {
+    console.log(response);
+    response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
+fetch("https://httpbin.org/post", {
+  method: "POST",
+  headers: {
+    "Content-Type": "appliction/json",
+    Acept: "application/json"
+  },
+  body: JSON.stringify({ message: "Does this works" })
+})
+  .then(function(response) {
+    console.log(response);
+    response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
