@@ -1,4 +1,7 @@
 var deferredPrompt;
+if (!window.Promise) {
+  window.Promise = Promise;
+}
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").then(function() {
     console.log("Service worker registered");
@@ -29,13 +32,14 @@ fetch("https://httpbin.org/post", {
   method: "POST",
   headers: {
     "Content-Type": "appliction/json",
-    Acept: "application/json"
+    Accept: "application/json"
   },
+  mode: "cors",
   body: JSON.stringify({ message: "Does this works" })
 })
   .then(function(response) {
     console.log(response);
-    response.json();
+    return response.json();
   })
   .then(function(data) {
     console.log(data);
